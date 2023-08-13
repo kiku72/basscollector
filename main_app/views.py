@@ -1,12 +1,7 @@
 from django.shortcuts import render
+from .models import Bass
 
 # Create your views here.
-basses = [
-    {'make':'G&L', 'model':'SB2', 'scale':'34"', 'color': 'Sonic Blue', 'construction': 'Poplar body and maple/rosewood neck' },
-    {'make':'Fender', 'model':'Jazz Bass', 'scale':'34"', 'color': 'Sunburst', 'construction': 'Basswood body and maple neck' },
-    {'make':'Yamaha', 'model':'TRBX304', 'scale':'34"', 'color': 'Arctic White', 'construction': 'Mahogany body and maple/mahogany neck' },
-]
-
 def home(request):
     return render(request, 'home.html')
 
@@ -15,6 +10,11 @@ def about(request):
 
 #we need to pass data, which we do with objects/dicts. this goes to the template!
 def bass_index(request):
+    basses = Bass.objects.all()
     return render(request, 'basses/index.html', {
         'basses' : basses
     })
+
+def bass_details(request, bass_id):
+    bass = Bass.objects.get(id=bass_id)
+    return render(request, 'basses/details.html', { 'bass':bass })

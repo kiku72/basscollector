@@ -18,8 +18,9 @@
           <li><a href="/" class="left brand-logo">&nbsp;&nbsp;bass wishlist</a></li>
         </ul>
         <ul class="right">
-          <li><a href="/about">about</a></li>
-          <li><a href="/basses">view all basses</a></li>
+          <li><a href="{% url 'about' %}">about</a></li>
+          <li><a href="{% url 'bass_create' %}">add bass</a></li>
+          <li><a href="{% url 'bass_index' %}">view all basses</a></li>
         </ul>
       </div>
     </nav>

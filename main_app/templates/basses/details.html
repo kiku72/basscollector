@@ -8,6 +8,10 @@
         <p>Scale: {{ bass.scale }}</p>
         <p>Material: {{ bass.construction | linebreaks}}</p>
     </div>
+    <div class="card-action">
+        <a href="{% url 'bass_update' bass.id %}">Edit</a>
+        <a href="{% url 'bass_delete' bass.id %}">Delete</a>
+    </div>
 </div>
 
 {% endblock %}

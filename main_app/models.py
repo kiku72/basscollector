@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 # Create your models here.
 class Bass(models.Model):
@@ -12,3 +13,6 @@ class Bass(models.Model):
     # no makemigrations is necessary
     def __str__(self):
         return f'{self.model} ({self.id})'
+
+    def get_absolute_url(self):
+        return reverse('bass_details', kwargs={'bass_id': self.id})

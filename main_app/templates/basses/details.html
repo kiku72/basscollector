@@ -14,4 +14,41 @@
     </div>
 </div>
 
+
+<div class="card">
+    <div class="card-content">
+        <p class="card-title"> Strings </p>
+        <div class="col s6">
+            <form action="{% url 'add_string' bass.id %}" method="POST">
+                {% csrf_token %}
+                {{ string_form.as_p }}
+                <input type="submit" class="btn" value="Add Strings">
+            </form>
+        </div>
+        <table class="striped">
+            <thead>
+                <tr>
+                    <th>Brand</th>
+                    <th>Model</th>
+                    <th>Type</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for strings in bass.strings_set.all %}
+                <tr>
+                    <td>{{strings.make}}</td>
+                    <td>{{strings.model}}</td>
+                    <td>{{strings.get_variety_display}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script>
+    const selectEl = document.getElementById('id_variety');
+    M.FormSelect.init(selectEl);
+</script>
+
 {% endblock %}

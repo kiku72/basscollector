@@ -46,6 +46,55 @@
     </div>
 </div>
 
+<div class="card">
+    <div class="row">
+        <div class="col s6">
+          <p class="card-title"> Amps to consider with {{ bass.make }} {{ bass.model }}</p>
+          {% if bass.amps.count %}
+            {% for amp in amps.all %}
+              <div class="card">
+                <div class="card-content">
+                  <span class="card-title">
+                    {{amp.make}} {{amp.model}} - {{amp.wattage}} {{amp.variety}} Amp
+                  </span>
+                </div>
+                <div>
+                    <form action="{% url 'unassoc_amp' bass.id amp.id %}" method="POST">
+                        {% csrf_token %}
+                        <button type="submit" class="btn">Remove</button>
+                    </form>
+                </div>
+              </div>
+            {% endfor %}
+          {% endif %}
+        </div>
+    </div>
+</div>
+
+<div class="card">
+    <div class="row">
+        <div class="col s6">
+            <p class="card-title"> Other Amps </p>
+            {% if amps.count %}
+                {% for amp in amps.all %}
+                    <div class="card">
+                    <div class="card-content">
+                        <span class="card-title">
+                        {{amp.make}} {{amp.model}} - {{amp.wattage}} {{amp.variety}} Amp
+                        </span>
+                    </div>
+                    <div>
+                        <form action="{% url 'assoc_amp' bass.id amp.id %}" method="POST">
+                        {% csrf_token %}
+                        <button type="submit" class="btn">Add</button>
+                        </form>
+                    </div>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+</div>
+
 <script>
     const selectEl = document.getElementById('id_variety');
     M.FormSelect.init(selectEl);

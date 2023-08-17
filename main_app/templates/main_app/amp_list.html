@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>amps list</h1>
+
+{% for amp in amp_list %}
+  <a href="{% url 'amp_detail' amp.id %}">
+    <div class="card">
+        <div class="card-content">
+            <span class="card-title">{{ amp.make }} {{ amp.model }}</span>
+            <p>Wattage: {{ amp.wattage }}</p>
+            <p>Type: {{ amp.variety }}</p>
+        </div>
+    </div>
+  </a>
+{% endfor %}
+
+{% endblock %}

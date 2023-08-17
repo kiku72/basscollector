@@ -8,12 +8,26 @@ VARIETIES = (
     ('T', 'Tapewound'),
 )
 
+class Amp(models.Model):
+    make = models.CharField(max_length=15)
+    model = models.CharField(max_length=20)
+    wattage = models.IntegerField()
+    variety = models.CharField(max_length=20)
+    
+    def __str__(self):
+        return f'{self.model} ({self.id})'
+
+    def get_absolute_url(self):
+        return reverse('amp_detail', kwargs={'pk': self.id})
+
+
 class Bass(models.Model):
     make = models.CharField(max_length=15)
     model = models.CharField(max_length=20)
     scale = models.IntegerField()
     color = models.CharField(max_length=20)
     construction = models.CharField(max_length=50)
+    amps = models.ManyToManyField(Amp)
 
     def __str__(self):
         return f'{self.model} ({self.id})'

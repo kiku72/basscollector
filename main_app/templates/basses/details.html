@@ -51,7 +51,7 @@
         <div class="col s6">
           <p class="card-title"> Amps to consider with {{ bass.make }} {{ bass.model }}</p>
           {% if bass.amps.count %}
-            {% for amp in amps.all %}
+            {% for amp in bass.amps.all %}
               <div class="card">
                 <div class="card-content">
                   <span class="card-title">
